@@ -43,6 +43,26 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div'); //select div elements
+
+  function logText(e) {
+    console.log(this.classList.value); //log the class of the div that was clicked
+    //e.stopPropogation(); //prevents bubbling up to parent elements, an if statement could allow it to stop at a more specific point...
+    //console.log(this); //this is the div that was clicked
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false, //default is false, true will fire the event on the way down instead of on the way up, false is the opposite
+    once: true //will unbind the event listener after the first click, so it will only fire once, good for like a button you only ever want to be clicked one time
+  })); //add event listener to each div, will print all three because classList.value is not specific enough
+
+  button.addEventListener('click', () => {
+    console.log('click!!!');
+  }, {
+    once: true
+  });
+  
+
 
 </script>
 </body>
